@@ -148,7 +148,10 @@ export default function Home() {
           <div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {movies?.map((movie: Movie) => (
-                <div className="group overflow-hidden rounded-lg bg-muted">
+                <div
+                  key={movie.id}
+                  className="group overflow-hidden rounded-lg bg-muted"
+                >
                   <Link
                     href={`/pelis/${movie.id}`}
                     className="relative block"

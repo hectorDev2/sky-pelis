@@ -19,9 +19,8 @@ import { Movie, MovieResponse } from "@/types";
 const URL_API = process.env.NEXT_PUBLIC_URL_API;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 export default function Home() {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [inputSearch, setInputSearch] = useState("");
+  const [movies, setMovies] = useState<Movie[]>([] as Movie[]);
+  const [inputSearch, setInputSearch] = useState<string>("");
 
   //fetch movies
 

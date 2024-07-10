@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Movie, MovieResponse } from "@/types";
+import type { Movie, MovieResponse } from "@/types";
+import { MovieId } from "@/types/MovieId";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -8,14 +9,15 @@ const URL_API = process.env.NEXT_PUBLIC_URL_API;
 const URL_API_IMAGE = process.env.NEXT_PUBLIC_URL_API_IMAGE;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 export default function Page({ params }: { params: { id: string } }) {
-  const [movie, setMovie] = useState<any>({} as Movie);
+  const [movie, setMovie] = useState<MovieId>({} as MovieId);
 
   useEffect(() => {
     fetch(
       `${URL_API}movie/${params.id}?api_key=${API_KEY}&language=es-ES&query=`,
     )
       .then((response) => response.json())
-      .then((data: MovieResponse) => {
+      .then((data: MovieId) => {
+        console.log(data);
         setMovie(data);
       })
       .catch((error) => console.error(error));
@@ -67,9 +69,7 @@ export default function Page({ params }: { params: { id: string } }) {
                       {movie.runtime} min
                     </li>
                     <li>
-                      <span className="font-medium">
-                        Genero:{movie.genres[0].name}
-                      </span>{" "}
+                      <span className="font-medium">Genero:</span>{" "}
                     </li>
                   </ul>
                 </div>
